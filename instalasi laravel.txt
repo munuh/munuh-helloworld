@@ -208,4 +208,66 @@ class StudentsController extends Controller
     }
 }
 
+<?php
+//stundentscontroller
+namespace App\Http\Controllers;
+
+use App\student;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Exceptions\Handler;
+
+class StudentsController extends Controller
+{ 
+    public function index()
+    {
+      $students = student::all(); 
+      return view('students.index',['students'=>$students]); 
+    } 
+
+    public function create()
+    {
+        return view('students.create'); 
+    }
+ 
+    public function store(Request $request)
+    { 
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'nrp' => 'required',
+            'email' => 'required',
+            'jurusan' => 'required',
+        ]); 
+        student::create($request->all());
+        return redirect('/students')->with('status', 'New Students Inserted!');; 
+    }
+
+     
+    public function show(student $student)
+    {
+        return view('students.show',["student"=>$student]); 
+    } 
+
+    public function edit(student $student)
+    {
+        return view('students.edit',compact('student')); 
+    }
+
+    
+    public function update(Request $request, student $student)
+    {
+        student::where('id',$student->id)
+                    ->update(['nama'=>$request->nama,'jurusan'=>$request->jurusan]); 
+        return redirect('/students')->with('status','data '.$student->nama.' berhasil diupdate!'); 
+    }
+
+    
+    public function destroy(student $student)
+    {
+        $student::destroy($student->id); 
+        return redirect('/students')->with('status','data '.$student->nama.' berhasil dihapus!'); 
+    }
+}
+
+
  
