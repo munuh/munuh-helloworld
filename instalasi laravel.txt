@@ -273,18 +273,13 @@ class StudentsController extends Controller
  //model munuh
  class munuh extends Model
  {
-     public function munuhsatu()
-    {
-        $sql="select * from a.digital"
-        $db=connect('emcs');
-        $this->db->QueryAll($sql);
-    }
+      
     
     public function munuhdua()
     {
-        $sql="select * from a.analog"
+        $sql="select * from a.digitalanalog"
         $db=connect('emcs');
-        $this->db->QueryAll($sql);
+        $this->db->QueryRow($sql);
     } 
     
     public function munuhtiga()
