@@ -270,4 +270,31 @@ class StudentsController extends Controller
 }
 
 
+ //model munuh
+ class munuh extends Model
+ {
+     public function munuhsatu()
+    {
+        $sql="select * from a.digital"
+        $db=connect('emcs');
+        $this->db->QueryAll($sql);
+    }
+    
+    public function munuhdua()
+    {
+        $sql="select * from a.analog"
+        $db=connect('emcs');
+        $this->db->QueryAll($sql);
+    } 
+    
+    public function munuhtiga()
+    {
+       $sql="select * from a.analog"
+        $db=connect('emcs');
+        $this->db->QueryAll($sql);
+    }
+ }
+ 
+ 
+ 
  
